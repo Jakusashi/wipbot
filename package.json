@@ -1,9 +1,9 @@
 {
-  "name": "greeter-bot",
+  "name": "WIP-Bot",
   "version": "1.0.0",
-  "description": "My own Discord bot",
+  "description": "",
   "main": "bot.js",
-  "author": "YOUR-NAME-HERE",
+  "author": "Hokan",
   "dependencies": {
     "discord.io": "^2.5.2",
     "winston": "^2.3.1"
