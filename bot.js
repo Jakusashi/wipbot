@@ -126,7 +126,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 			
 			case 'slam':
-				var i = randomIntInc(1,8)
+				var i = randomIntInc(0,33)
 				bot.sendMessage({
 					to: channelID,
 					message: slam[i]
@@ -134,7 +134,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 				
 			case 'memesong':
-			var i = randomIntInc(1,8)
+			var i = randomIntInc(0,8)
 				bot.sendMessage({
 					to: channelID,
 					message: songmemes[i]
