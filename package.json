@@ -1,5 +1,4 @@
 {
-  "start": "node server.js",
   "name": "Arcal Bot",
   "version": "1.0.0",
   "description": "",
@@ -8,6 +7,9 @@
   "dependencies": {
     "discord.io": "^2.5.2",
     "winston": "^2.3.1"
-  }
-	
+  },
+  "scripts": {
+  "start": "bot.js"
+}
+
 }
