@@ -140,6 +140,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					message: songmemes[i]
 				})
 				break;
+			
+			case 'yamero':
+				bot.sendMessage({
+					to:channelID,
+					message:'http://i0.kym-cdn.com/photos/images/newsfeed/001/144/310/41c.jpg'
+				})
+				break;
          }
      }
 });
