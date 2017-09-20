@@ -54,7 +54,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			case 'hilfe':
 				bot.sendMessage({
                     to: channelID,
-                    message: 'Prefix ! - hestiastep everythingwillfreeze sandstorm rickroll karny'
+                    message: 'Prefix ! - hestiastep everythingwillfreeze sandstorm rickroll karny memesong slam'
 					
                 });
 				break;
