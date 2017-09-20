@@ -9,6 +9,6 @@
     "winston": "^2.3.1"
   }
 }
-bot: {
+{
   "start": "node server.js"
 }
