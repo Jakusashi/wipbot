@@ -1,7 +1,5 @@
 "scripts": {
   "start": "bot.js"
-}
-{
   "name": "Arcal Bot",
   "version": "1.0.0",
   "description": "",
