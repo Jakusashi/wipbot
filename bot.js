@@ -83,7 +83,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			case 'hilfe':
 				bot.sendMessage({
                     to: channelID,
-                    message: 'Prefix ! - hestiastep everythingwillfreeze sandstorm rickroll karny memesong slam'
+                    message: 'Prefix ! - hestiastep everythingwillfreeze sandstorm rickroll memesong slam'
+					
+                });
+				bot.sendMessage({
+                    to: channelID,
+                    message: 'Obrazki: karny yamero getout ok meh obviously'
 					
                 });
 				break;
@@ -117,10 +122,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				})
 			break;
 			
-			case 'karny':
-				bot.sendMessage({
+			case 'karny':			
+				bot.uploadFile({
 					to: channelID,
-                    message: 'https://cdn.discordapp.com/attachments/359694153791176706/360027584958038019/received_967748513299093.jpeg'							
+                    file: 'obrazki/karny.jpeg'							
 				})
 				
 			break;
@@ -142,11 +147,47 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 			
 			case 'yamero':
-				bot.sendMessage({
-					to:channelID,
-					message:'http://i0.kym-cdn.com/photos/images/newsfeed/001/144/310/41c.jpg'
+				bot.uploadFile({
+					to: channelID,
+                    file: 'obrazki/yamero.jpg'							
 				})
+				
 				break;
+				
+			case 'getout':
+				bot.uploadFile({
+					to: channelID,
+					file: 'obrazki/get out.png'
+				})
+			
+				
+				break;
+				
+			case 'meh':
+				bot.uploadFile({
+					to:channelID,
+					file: 'obrazki/meh.jpg'
+				})
+				
+				break;
+				
+			case 'ok':
+				bot.uploadFile({
+					to:channelID,
+					file: 'obrazki/ok.jpg'
+					
+				})
+				
+				break;
+				
+			case 'obviously':
+				bot.uploadFile({
+					to:channelID,
+					file: 'obrazki/obviously.jpg'
+				})
+				
+				break;
+				
          }
      }
 });
