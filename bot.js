@@ -20,8 +20,40 @@ bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ');
     logger.info(bot.username + ' - (' + bot.id + ')');
-});
+	
+	
+	});
+
+bot.setPresence({
+		
+		game:{
+			
+				name:'!hilfe'
+		}
+		
+	});
 bot.on('message', function (user, userID, channelID, message, evt) {
+	
+	
+
+	var i = randomIntInc(0,1000)
+	if(i == 5)
+		bot.uploadFile({
+			to:channelID,
+			file:"obrazki/inkwizycja.jpg"
+		})
+
+	if(message.indexOf("penis") > -1 || message.indexOf("Penis")> -1 || message.indexOf("PENIS")> -1){
+		bot.uploadFile({
+			to:channelID,
+			file:"obrazki/beniz.jpg"
+			})
+			
+			
+		
+		
+	}
+
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
     if (message.substring(0, 1) == '!') {
@@ -88,9 +120,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 });
 				bot.sendMessage({
                     to: channelID,
-                    message: 'Obrazki: karny yamero getout ok meh obviously'
+                    message: 'Obrazki: karny yamero getout ok meh obviously sztuczka magic'
 					
                 });
+				
 				break;
 			case 'hestiastep':
 				bot.sendMessage({
@@ -98,6 +131,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'https://www.youtube.com/watch?v=nZsC5p9M3p8'
 					
                 });
+				
 				break;
 			case 'everythingwillfreeze':
 				bot.sendMessage({
@@ -105,6 +139,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'https://www.youtube.com/watch?v=lkicMsn-s_8'
 					
                 });
+				
             break;
 			
 			case 'rickroll':
@@ -113,6 +148,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
 									
 				})
+				
 				break;
 			case 'sandstorm':
 				bot.sendMessage({
@@ -120,6 +156,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'https://www.youtube.com/watch?v=y6120QOlsfU'
 									
 				})
+				
 			break;
 			
 			case 'karny':			
@@ -136,6 +173,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					to: channelID,
 					message: slam[i]
 				})
+				
 				break;
 				
 			case 'memesong':
@@ -144,6 +182,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					to: channelID,
 					message: songmemes[i]
 				})
+				
 				break;
 			
 			case 'yamero':
@@ -177,7 +216,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					file: 'obrazki/ok.jpg'
 					
 				})
-				
+			
 				break;
 				
 			case 'obviously':
@@ -188,6 +227,33 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				
 				break;
 				
+			case 'magic':
+				bot.uploadFile({
+					to:channelID,
+					file: 'obrazki/magic.jpg'
+				})
+				
+				break;
+				
+			case 'sztuczka':
+				bot.uploadFile({
+					to:channelID,
+					file: 'obrazki/switch1.png'
+				})
+				setTimeout(function(){
+					bot.uploadFile({
+					to:channelID,
+					file: 'obrazki/switch2.png'
+				})},5000
+				);
+				
+				break;
+			
+				default:
+				bot.uploadFile({
+					to:channelID,
+					file: 'obrazki/notwork.png'
+				})
          }
      }
 });
