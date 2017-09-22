@@ -8,7 +8,10 @@ var conString = "postgres://jxxwawtxxlsgra:5fc4c5e32af79ae742040819720767f8f5a06
 var client = new pg.Client(conString);
 client.connect();
 
-client.query("Select * from all");
+client.query("CREATE TABLE IF NOT EXISTS memes(id varchar(100) primary key");
+
+
+
 eval(fs.readFileSync('slam.js')+'');
 eval(fs.readFileSync('memesongs.js')+'');
 // eval(fs.readFileSync('songs.js')+'');
