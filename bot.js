@@ -1,6 +1,10 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
+var fs = require('fs');
+eval(fs.readFileSync('slam.js')+'');
+eval(fs.readFileSync('memesongs.js')+'');
+// eval(fs.readFileSync('songs.js')+'');
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -61,56 +65,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         var cmd = args[0];
        
         args = args.splice(1);
-		// tutaj dodawać linki do remixów z Barkleyem
-		slam = ['https://www.youtube.com/watch?v=bwv_2OKxZr8', //Barkley Bizzare Adventure
-		'https://www.youtube.com/watch?v=uints81YYMc', //Slam of the North Star
-		'https://www.youtube.com/watch?v=VjR7JZbdONs', //Wonderball 101
-		'https://www.youtube.com/watch?v=qH4NbO74A1k', //Epic Slam Guy
-		'https://www.youtube.com/watch?v=O4J_S3NdIUE', //Through the Slams and Jams
-		'https://www.youtube.com/watch?v=J9FImc2LOr8', //Original
-		'https://youtu.be/cCeovAd7iOQ', //Slamstorm
-		'https://youtu.be/SCivYNvACCU', //Slamiru
-		'https://www.youtube.com/watch?v=Q9Sxy2e6f7Y', //Super Slam Bros
-		'https://youtu.be/cQ6C-JTYZ6U', //Pokeslam 2 vs Champion
-		'https://youtu.be/-Cqrgan-lwk', // Megaloslamia
-		'https://www.youtube.com/watch?v=lveR-U4Y_U0', // Thomas the Slam Engine
-		'https://www.youtube.com/watch?v=WmZbUZLHX-k', // Pokeslam Theme
-		'https://www.youtube.com/watch?v=awkUfIjl1R0', // Ghostslammers
-		'https://youtu.be/m719OZjyDzk', //Feel Good Slam
-		'https://youtu.be/etZ5aw1j3Ro', //Nintendo Slams
-		'https://www.youtube.com/watch?v=rGGh_NMBAk0', //Moves like Jordan
-		'https://www.youtube.com/watch?v=F2meN7deokM', //Everyballer
-		'https://www.youtube.com/watch?v=f4HeWNiWto8', //Daft Dunk
-		'https://youtu.be/v2Vk435T5e0', //Gusty Space Jam Galaxy
-		'https://www.youtube.com/watch?v=e68wBw4Vr4k', //I'll make a slam out of you
-		'https://youtu.be/hQKmWjGSXeU', //Let it slam
-		'https://www.youtube.com/watch?v=ki0080uob0w', //MORTAL Slam
-		'https://www.youtube.com/watch?v=0KlxsBPhiKM', //Ocarina of Jam
-		'https://youtu.be/W3ozPQZ95sM', //Green Slam Zone
-		'https://www.youtube.com/watch?v=Yy-23lC53fw', //He-man x Barkley
-		'https://youtu.be/qT1sd6_Wsug', //Batslam
-		'https://youtu.be/A_XG0Q_f9tE', //PEPSISLAM
-		'https://www.youtube.com/watch?v=fNaIOsY52hI', //Space Emblem
-		'https://youtu.be/sLp-063PWqY', //B-ball of battle
-		'https://www.youtube.com/watch?v=1lyQ__CG6Wo', //That Baller's Name Is
-		'https://www.youtube.com/watch?v=kPXP32QzTFw', //You're My Hoop
-		'https://youtu.be/BwBK2xkjaSU', // My Slaw will Jam On
-		'https://www.youtube.com/watch?v=ko4k_Ya4n6w', //Fukkireta
-		'https://www.youtube.com/watch?v=iBIf0OgZffU' //Carry on Wayward Slam
-		]
+		songmemes.length
 		
-		// memiczne piosenki tutaj
-		songmemes = ['https://www.youtube.com/watch?v=f3IgwLT_mYc', //Everybody's Circulation
-		'https://youtu.be/8CvqmD0CZao', //Fuck Bees
-		'https://youtu.be/WM-fTkO6BI4', //Tribute
-		'https://youtu.be/ETfiUYij5UE', //Thomas the Tank Engine
-		'https://www.youtube.com/watch?v=K5tVbVu9Mkg', //Cooking by the book
-		'https://www.youtube.com/watch?v=9a4exztEy6g', //Down with the Memes
-		'https://www.youtube.com/watch?v=1w5_IktEDOI', //Chop Suey
-		'https://www.youtube.com/watch?v=FGiwDwmoJLk', //Bieber
-		'https://www.youtube.com/watch?v=rEM6zENiupo', //Everybody's Rooftop Run
-		'https://www.youtube.com/watch?v=ZZ5LpwO-An4' //He-man
-		]
+
         switch(cmd) {
 			case 'hilfe':
 				bot.sendMessage({
@@ -168,7 +125,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 			
 			case 'slam':
-				var i = randomIntInc(0,33)
+				var i = randomIntInc(0,slam.length-1)
 				bot.sendMessage({
 					to: channelID,
 					message: slam[i]
@@ -177,7 +134,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 				
 			case 'memesong':
-			var i = randomIntInc(0,8)
+			var i = randomIntInc(0,songmemes.length-1)
 				bot.sendMessage({
 					to: channelID,
 					message: songmemes[i]
@@ -248,8 +205,85 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				);
 				
 				break;
-			
-				default:
+				
+			case 'addmeme':
+				var lnk = message;
+				var duplikat = false;
+				lnk = lnk.substr(9,lnk.length-9);
+				
+				if(lnk.indexOf("youtube.com") > -1 || lnk.indexOf("youtu.be") > -1){	
+					if(lnk.indexOf("watch?v=") > -1){
+						
+						lnkh = lnk.substr(lnk.indexOf("watch?v=")+8,lnk.length - lnk.indexOf("watch?v=")+8)
+						
+						for(var i = 0; i < songmemes.length; i++){
+							if(songmemes[i].indexOf(lnkh) > -1){
+								duplikat = true;
+								break;
+							}
+							
+						}
+						
+					}
+					else if(lnk.indexOf("youtu.be") > -1){
+						
+						lnkh = lnk.substr(lnk.indexOf(".be/")+4,lnk.length - lnk.indexOf(".be/")+4)
+						
+						for(var i = 0; i < songmemes.length; i++){
+							if(songmemes[i].indexOf(lnkh) > -1){
+								duplikat = true;
+								break;
+							}
+							
+						}
+						
+						
+					}
+					if(!duplikat)
+					songmemes.push(lnk);
+						i=0;
+						fs.writeFile('memesongs.js', "songmemes = [");
+						while(i<songmemes.length){
+							if(i != songmemes.length-1)
+							fs.appendFile('memesongs.js',"'".concat(songmemes[i],"', \n"));
+							else
+							fs.appendFile('memesongs.js',"'".concat(songmemes[i],"']"));	
+							i++;
+						}
+						if(!duplikat)
+						bot.sendMessage({
+							to:channelID,
+							message:"Pomyślnie dodano piosenkę"
+						});
+						else if(duplikat)
+						bot.sendMessage({
+							to:channelID,
+							message:"Taka piosenka już jest na liście"
+						});
+					
+					
+				}
+				else
+				bot.sendMessage({
+						to:channelID,
+						message:"Przyjmuję tylko linki z youtube"
+					})
+						
+				break;
+				
+			case 'testmeme':
+				bot.sendMessage({
+						to:channelID,
+						message:songmemes[songmemes.length-1]
+					})
+						
+				break;
+				
+			case 'rank':
+				break;
+			case 'levels':
+				break;
+			default:
 				bot.uploadFile({
 					to:channelID,
 					file: 'obrazki/notwork.png'
