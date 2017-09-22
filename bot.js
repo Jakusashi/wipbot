@@ -2,9 +2,19 @@ var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
 var fs = require('fs');
+var pg = require('pg');
+var conString = "postgres://jxxwawtxxlsgra:5fc4c5e32af79ae742040819720767f8f5a0689e5c0f8dabc76223fb19d096f2@ec2-176-34-186-178.eu-west-1.compute.amazonaws.com:5432/d2ii6borckh31r";
+
+var client = new pg.Client(conString);
+client.connect();
+
+client.query("Select * from all");
 eval(fs.readFileSync('slam.js')+'');
 eval(fs.readFileSync('memesongs.js')+'');
 // eval(fs.readFileSync('songs.js')+'');
+
+
+
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -291,4 +301,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
          }
      }
 });
+
+
  
