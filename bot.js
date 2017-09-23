@@ -77,7 +77,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		
 		
 	}
-
+	
+	if(message.indexOf("@everyone") > -1){
+		bot.uploadFile({
+			to:channelID,
+			file:"obrazki/fuck you.png"
+			})
+		bot.deleteMessage({
+			channelID:channelID,
+			messageID:evt.d.id			
+		})
+	}
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
     if (message.substring(0, 1) == '!') {
