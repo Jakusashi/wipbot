@@ -3,14 +3,21 @@ var logger = require('winston');
 var auth = require('./auth.json');
 var fs = require('fs');
 var pg = require('pg');
-var conString = "postgres://jxxwawtxxlsgra:5fc4c5e32af79ae742040819720767f8f5a0689e5c0f8dabc76223fb19d096f2@ec2-176-34-186-178.eu-west-1.compute.amazonaws.com:5432/d2ii6borckh31r";
+//var conString = "postgres://postgres:@localhost:5432/postgres";
+//"postgres://jxxwawtxxlsgra:5fc4c5e32af79ae742040819720767f8f5a0689e5c0f8dabc76223fb19d096f2@ec2-176-34-186-178.eu-west-1.compute.amazonaws.com:5432/d2ii6borckh31r";
 
-var client = new pg.Client(conString);
+/*const { Client } = require('pg')
+
+const client = new Client({
+  host: 'localhost',
+  port: 5334,
+  user: 'postgres',
+  database: 'postgres',
+  password: ''
+})
+
 client.connect();
-
-client.query("CREATE TABLE IF NOT EXISTS memes(id varchar(100) primary key");
-
-
+*/
 
 eval(fs.readFileSync('slam.js')+'');
 eval(fs.readFileSync('memesongs.js')+'');
@@ -76,7 +83,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     if (message.substring(0, 1) == '!') {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
-       
+		
         args = args.splice(1);
 		songmemes.length
 		
@@ -139,6 +146,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			
 			case 'slam':
 				var i = randomIntInc(0,slam.length-1)
+				client.query
 				bot.sendMessage({
 					to: channelID,
 					message: slam[i]
@@ -218,7 +226,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				);
 				
 				break;
-				
+			/*	
 			case 'addmeme':
 				var lnk = message;
 				var duplikat = false;
@@ -240,29 +248,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					}
 					else if(lnk.indexOf("youtu.be") > -1){
 						
-						lnkh = lnk.substr(lnk.indexOf(".be/")+4,lnk.length - lnk.indexOf(".be/")+4)
-						
-						for(var i = 0; i < songmemes.length; i++){
-							if(songmemes[i].indexOf(lnkh) > -1){
-								duplikat = true;
-								break;
-							}
-							
-						}
-						
-						
-					}
-					if(!duplikat)
-					songmemes.push(lnk);
-						i=0;
-						fs.writeFile('memesongs.js', "songmemes = [");
-						while(i<songmemes.length){
-							if(i != songmemes.length-1)
-							fs.appendFile('memesongs.js',"'".concat(songmemes[i],"', \n"));
-							else
-							fs.appendFile('memesongs.js',"'".concat(songmemes[i],"']"));	
-							i++;
-						}
 						if(!duplikat)
 						bot.sendMessage({
 							to:channelID,
@@ -275,7 +260,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						});
 					
 					
-				}
+				}}
 				else
 				bot.sendMessage({
 						to:channelID,
@@ -285,13 +270,25 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 				
 			case 'testmeme':
+				
+				var result = client.query({
+				  rowMode: 'array',
+				  text: 'SELECT count(*) from memy;'
+				})
+				console.log(result.fields[0].name) // one
+				console.log(result.fields[1].name) // two
+				console.log(result.rows) // [1, 2]
+			    client.end()
+				
 				bot.sendMessage({
 						to:channelID,
-						message:songmemes[songmemes.length-1]
+						message:i
 					})
+			
+			
 						
 				break;
-				
+				*/
 			case 'rank':
 				break;
 			case 'levels':
