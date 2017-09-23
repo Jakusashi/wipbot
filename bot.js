@@ -112,6 +112,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 });
 				
 				break;
+				
+			case 'help':
+				bot.uploadFile({
+					to:channelID,
+					file:"obrazki/helping.jpg"
+				})
+				break;
+				
 			case 'hestiastep':
 				bot.sendMessage({
                     to: channelID,
