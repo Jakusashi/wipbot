@@ -72,11 +72,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			to:channelID,
 			file:"obrazki/beniz.jpg"
 			})
-			
-			
-		
 		
 	}
+	
+	if(message.indexOf("omae wa mou shindeiru") > -1){
+		bot.uploadFile({
+			to:channelID,
+			file:"obrazki/nani.jpg"
+			})		
+		
+	}
+	
 	if(message.indexOf("gwidon") > -1 && message.indexOf(":gwidon") == -1){
 		i = randomIntInc(0,1)
 		if(i == 0){
