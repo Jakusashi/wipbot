@@ -77,7 +77,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		
 		
 	}
-	if(message.indexOf("gwidon") > -1){
+	if(message.indexOf("gwidon") > -1 && message.indexOf(":gwidon") == -1){
 		i = randomIntInc(0,1)
 		if(i == 0){
 		bot.uploadFile({
