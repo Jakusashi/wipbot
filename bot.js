@@ -79,12 +79,18 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	}
 	if(message.indexOf("gwidon") > -1){
 		i = randomIntInc(0,1)
+		if(i = 0){
 		bot.uploadFile({
 			to:channelID,
-			file:"obrazki/guido"+i+".png"
+			file:"obrazki/Guido0.png"
 			})
-			
-			
+		}
+		else
+		bot.uploadFile({
+			to:channelID,
+			file:"obrazki/Guido1.png"
+			})
+		}			
 		
 		
 	}
