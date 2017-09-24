@@ -66,8 +66,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			to:channelID,
 			file:"obrazki/inkwizycja.jpg"
 		})
-
-	if(message.indexOf("penis") > -1 || message.indexOf("Penis")> -1 || message.indexOf("PENIS")> -1){
+	message = message.toLowerCase();
+	if(message.indexOf("penis") > -1){
 		bot.uploadFile({
 			to:channelID,
 			file:"obrazki/beniz.jpg"
@@ -77,17 +77,18 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		
 		
 	}
-	
-	if(message.indexOf("@everyone") > -1){
+	if(message.indexOf("gwidon") > -1){
+		i = randomIntInc(0,1)
 		bot.uploadFile({
 			to:channelID,
-			file:"obrazki/fuck you.png"
+			file:"obrazki/guido"+i+".png"
 			})
-		bot.deleteMessage({
-			channelID:channelID,
-			messageID:evt.d.id			
-		})
+			
+			
+		
+		
 	}
+	
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
     if (message.substring(0, 1) == '!') {
