@@ -302,7 +302,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				*/
 			case 'testmeme':
 				
-				client.query('Select count(*) from memy', (err, res) => {
+				client.query('Select * from memy', (err, res) => {
 					if(err) {
 						i = "not working";
 					}
