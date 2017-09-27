@@ -301,7 +301,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 				*/
 			case 'testmeme':
-				var test
+				var test = "tak"
 				client.query('Select link from memy', (err, res) => {
 					if(err) {
 						test = "not working";
