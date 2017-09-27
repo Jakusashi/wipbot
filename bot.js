@@ -3,26 +3,18 @@ var logger = require('winston');
 var auth = require('./auth.json');
 var fs = require('fs');
 var pg = require('pg');
-//var conString = "postgres://postgres:@localhost:5432/postgres";
-//"postgres://jxxwawtxxlsgra:5fc4c5e32af79ae742040819720767f8f5a0689e5c0f8dabc76223fb19d096f2@ec2-176-34-186-178.eu-west-1.compute.amazonaws.com:5432/d2ii6borckh31r";
-
-const { Client } = require('pg')
-
-const client = new Client({
-  host: 'ec2-176-34-186-178.eu-west-1.compute.amazonaws.com',
-  port: 5432,
-  user: 'jxxwawtxxlsgra',
-  database: '5fc4c5e32af79ae742040819720767f8f5a0689e5c0f8dabc76223fb19d096f2',
-  password: ''
-})
-
-client.connect();
-
-
+var nodemailer = require('nodemailer');
 eval(fs.readFileSync('slam.js')+'');
 eval(fs.readFileSync('memesongs.js')+'');
-// eval(fs.readFileSync('songs.js')+'');
+eval(fs.readFileSync('songs.js')+'');
 
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'arcal.bot.discord',
+    pass: '.S$.Rm&N2T3d*#6)'
+  }
+});
 
 
 // Configure logger settings
@@ -66,6 +58,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			to:channelID,
 			file:"obrazki/inkwizycja.jpg"
 		})
+	msg = message;
 	message = message.toLowerCase();
 	if(message.indexOf("penis") > -1){
 		bot.uploadFile({
@@ -177,7 +170,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			
 			case 'slam':
 				var i = randomIntInc(0,slam.length-1)
-				client.query
 				bot.sendMessage({
 					to: channelID,
 					message: slam[i]
@@ -190,6 +182,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				bot.sendMessage({
 					to: channelID,
 					message: songmemes[i]
+				})
+				
+				break;
+			
+			case 'song':
+			var i = randomIntInc(0,songs.length-1)
+				bot.sendMessage({
+					to: channelID,
+					message: songs[i]
 				})
 				
 				break;
@@ -257,9 +258,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				);
 				
 				break;
-			/*	
+				
+
 			case 'addmeme':
-				var lnk = message;
+				var lnk = msg;
 				var duplikat = false;
 				lnk = lnk.substr(9,lnk.length-9);
 				
@@ -279,11 +281,25 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					}
 					else if(lnk.indexOf("youtu.be") > -1){
 						
-						if(!duplikat)
-						bot.sendMessage({
+						lnkh = lnk.substr(lnk.indexOf(".be/")+4,lnk.length - lnk.indexOf(".be/")+4)
+						
+						for(var i = 0; i < songmemes.length; i++){
+							if(songmemes[i].indexOf(lnkh) > -1){
+								duplikat = true;
+								break;
+							}
+							
+						}
+						
+						
+					}
+					if(!duplikat){
+					songmemes.push(lnk);
+					bot.sendMessage({
 							to:channelID,
 							message:"Pomyślnie dodano piosenkę"
 						});
+					}
 						else if(duplikat)
 						bot.sendMessage({
 							to:channelID,
@@ -291,7 +307,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						});
 					
 					
-				}}
+				}
 				else
 				bot.sendMessage({
 						to:channelID,
@@ -299,16 +315,188 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					})
 						
 				break;
-				*/
-			case 'testmeme':
 				
-				var res = client.query('Select link from memy')
+				
+			case 'addslam':
+				var lnk = msg;
+				var duplikat = false;
+				lnk = lnk.substr(9,lnk.length-9);
+				
+				if(lnk.indexOf("youtube.com") > -1 || lnk.indexOf("youtu.be") > -1){	
+					if(lnk.indexOf("watch?v=") > -1){
+						
+						lnkh = lnk.substr(lnk.indexOf("watch?v=")+8,lnk.length - lnk.indexOf("watch?v=")+8)
+						
+						for(var i = 0; i < slam.length; i++){
+							if(slam[i].indexOf(lnkh) > -1){
+								duplikat = true;
+								break;
+							}
+							
+						}
+						
+					}
+					else if(lnk.indexOf("youtu.be") > -1){
+						
+						lnkh = lnk.substr(lnk.indexOf(".be/")+4,lnk.length - lnk.indexOf(".be/")+4)
+						
+						for(var i = 0; i < slam.length; i++){
+							if(slam[i].indexOf(lnkh) > -1){
+								duplikat = true;
+								break;
+							}
+							
+						}
+						
+						
+					}
+					if(!duplikat){
+					slam.push(lnk);
+					bot.sendMessage({
+							to:channelID,
+							message:"Pomyślnie dodano piosenkę"
+						});
+					}
+						else if(duplikat)
+						bot.sendMessage({
+							to:channelID,
+							message:"Taka piosenka już jest na liście"
+						});
 					
-							   
+					
+				}
+				else
 				bot.sendMessage({
 						to:channelID,
-						message:res.rows[0]
+						message:"Przyjmuję tylko linki z youtube"
 					})
+						
+				break;
+				
+				
+			case 'addsong':
+				var lnk = msg;
+				var duplikat = false;
+				lnk = lnk.substr(9,lnk.length-9);
+				
+				if(lnk.indexOf("youtube.com") > -1 || lnk.indexOf("youtu.be") > -1){	
+					if(lnk.indexOf("watch?v=") > -1){
+						
+						lnkh = lnk.substr(lnk.indexOf("watch?v=")+8,lnk.length - lnk.indexOf("watch?v=")+8)
+						
+						for(var i = 0; i < songs.length; i++){
+							if(songs[i].indexOf(lnkh) > -1){
+								duplikat = true;
+								break;
+							}
+							
+						}
+						
+					}
+					else if(lnk.indexOf("youtu.be") > -1){
+						
+						lnkh = lnk.substr(lnk.indexOf(".be/")+4,lnk.length - lnk.indexOf(".be/")+4)
+						
+						for(var i = 0; i < songs.length; i++){
+							if(songs[i].indexOf(lnkh) > -1){
+								duplikat = true;
+								break;
+							}
+							
+						}
+						
+						
+					}
+					if(!duplikat){
+					songs.push(lnk);
+					bot.sendMessage({
+							to:channelID,
+							message:"Pomyślnie dodano piosenkę"
+						});
+					}
+						else if(duplikat)
+						bot.sendMessage({
+							to:channelID,
+							message:"Taka piosenka już jest na liście"
+						});
+					
+					
+				}
+				else
+				bot.sendMessage({
+						to:channelID,
+						message:"Przyjmuję tylko linki z youtube"
+					})
+						
+				break;	
+				
+				
+			case 'backup':
+				var backup = "songmemes = [<br>";
+				var i = 0;
+				
+				while(i < songmemes.length-1){
+					backup += "'";
+					backup += songmemes[i];
+					backup += "',<br>";
+					i++;
+				}
+				
+				backup += "'";
+				backup += songmemes[i];
+				backup += "']";
+				
+				backup +="<br><br><br>";
+				backup += "slam = [<br>";
+				i = 0;
+				
+				while(i < slam.length-1){
+					backup += "'";
+					backup += slam[i];
+					backup += "',<br>";
+					i++;
+				}
+				
+				backup += "'";
+				backup += slam[i];
+				backup += "']";
+				
+				
+				backup += "<br><br><br>";
+				backup += "songs = [<br>";
+				i = 0;
+				
+				while(i < songs.length-1){
+					backup += "'";
+					backup += songs[i];
+					backup += "',<br>";
+					i++;
+				}
+				
+				backup += "'";
+				backup += songs[i];
+				backup += "']";
+				
+				var mailOptions = {
+					from:'arcal.bot.discord@gmail.com',
+					to:'mistrztmn@gmail.com',
+					subject:"backup",
+					html: backup
+				}	
+							   
+				transporter.sendMail(mailOptions, function(error, info){
+				if (error) {
+					bot.sendMessage({
+							to:channelID,
+							message:error
+						});
+				  } else {
+						bot.sendMessage({
+							to:channelID,
+							message:"Wykonano backup"
+						});
+				  }
+				}); 
 			
 			
 						
