@@ -6,18 +6,18 @@ var pg = require('pg');
 //var conString = "postgres://postgres:@localhost:5432/postgres";
 //"postgres://jxxwawtxxlsgra:5fc4c5e32af79ae742040819720767f8f5a0689e5c0f8dabc76223fb19d096f2@ec2-176-34-186-178.eu-west-1.compute.amazonaws.com:5432/d2ii6borckh31r";
 
-/*const { Client } = require('pg')
+const { Client } = require('pg')
 
 const client = new Client({
-  host: 'localhost',
-  port: 5334,
-  user: 'postgres',
-  database: 'postgres',
+  host: 'ec2-176-34-186-178.eu-west-1.compute.amazonaws.com',
+  port: 5432,
+  user: 'jxxwawtxxlsgra',
+  database: '5fc4c5e32af79ae742040819720767f8f5a0689e5c0f8dabc76223fb19d096f2',
   password: ''
 })
 
 client.connect();
-*/
+
 
 eval(fs.readFileSync('slam.js')+'');
 eval(fs.readFileSync('memesongs.js')+'');
@@ -48,7 +48,9 @@ bot.on('ready', function (evt) {
 	
 	});
 
-bot.setPresence({
+
+bot.on('message', function (user, userID, channelID, message, evt) {
+	bot.setPresence({
 		
 		game:{
 			
@@ -56,8 +58,6 @@ bot.setPresence({
 		}
 		
 	});
-bot.on('message', function (user, userID, channelID, message, evt) {
-	
 	
 
 	var i = randomIntInc(0,1000)
@@ -299,17 +299,19 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					})
 						
 				break;
-				
+				*/
 			case 'testmeme':
 				
-				var result = client.query({
-				  rowMode: 'array',
-				  text: 'SELECT count(*) from memy;'
+				client.query('Select count(*) from memy', (err, res) => {
+					if(err) {
+						i = err.stack;
+					}
+					else{
+						i = res.rows[0];
+					}
 				})
-				console.log(result.fields[0].name) // one
-				console.log(result.fields[1].name) // two
-				console.log(result.rows) // [1, 2]
-			    client.end()
+				
+			   
 				
 				bot.sendMessage({
 						to:channelID,
@@ -319,7 +321,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			
 						
 				break;
-				*/
+				
 			case 'rank':
 				break;
 			case 'levels':
