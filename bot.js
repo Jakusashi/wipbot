@@ -302,20 +302,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				*/
 			case 'testmeme':
 				
-				client.query('Select link from memy', (err, res) => {
-					if(err) {
-						var	test = "not working";
-					}
-					else{
-						var	test = res.rows[0];
-					}
-				})
-				
-			   
-				
+				var res = client.query('Select link from memy')
+					
+							   
 				bot.sendMessage({
 						to:channelID,
-						message:test
+						message:res.rows[0]
 					})
 			
 			
