@@ -301,13 +301,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 				*/
 			case 'testmeme':
-				
-				client.query('Select * from memy', (err, res) => {
+				var test
+				client.query('Select link from memy', (err, res) => {
 					if(err) {
-						i = "not working";
+						test = "not working";
 					}
 					else{
-						i = res.rows[0];
+						test = res.rows[0];
 					}
 				})
 				
@@ -315,7 +315,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				
 				bot.sendMessage({
 						to:channelID,
-						message:i
+						message:test
 					})
 			
 			
