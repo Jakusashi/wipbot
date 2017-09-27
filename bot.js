@@ -304,7 +304,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				
 				client.query('Select count(*) from memy', (err, res) => {
 					if(err) {
-						i = err.stack;
+						i = "not working";
 					}
 					else{
 						i = res.rows[0];
