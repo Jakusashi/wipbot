@@ -101,8 +101,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         var cmd = args[0];
 		
         args = args.splice(1);
-		songmemes.length
-		
+
+		var i = 0;
 
         switch(cmd) {
 			case 'hilfe':
@@ -174,7 +174,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 			
 			case 'slam':
-				var i = randomIntInc(0,slam.length-1)
+				i = randomIntInc(0,slam.length-1)
 				bot.sendMessage({
 					to: channelID,
 					message: slam[i]
@@ -183,7 +183,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 				
 			case 'memesong':
-			var i = randomIntInc(0,songmemes.length-1)
+				i = randomIntInc(0,songmemes.length-1)
 				bot.sendMessage({
 					to: channelID,
 					message: songmemes[i]
@@ -192,7 +192,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 			
 			case 'song':
-			var i = randomIntInc(0,songs.length-1)
+				i = randomIntInc(0,songs.length-1)
 				bot.sendMessage({
 					to: channelID,
 					message: songs[i]
