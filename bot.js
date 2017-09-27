@@ -116,6 +116,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'Obrazki: karny yamero getout ok meh obviously sztuczka magic'
 					
                 });
+				bot.sendMessage({
+                    to: channelID,
+                    message: 'addmeme <link>, addslam <link>, addsong <link>'
+					
+                });
 				
 				break;
 				
