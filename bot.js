@@ -90,7 +90,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			file:"obrazki/Guido1.png"
 			})
 		}			
-		
+	
+
 		
 	
 	
@@ -269,7 +270,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				var lnk = msg;
 				var duplikat = false;
 				lnk = lnk.substr(9,lnk.length-9);
-				
+				if(msg.indexOf("kJQP7kiw5Fk") > -1){
+					bot.uploadFile({
+					to:channelID,
+					file:"obrazki/fuck you.png"
+					})
+				}
+			
+				else{
 				if(lnk.indexOf("youtube.com") > -1 || lnk.indexOf("youtu.be") > -1){	
 					if(lnk.indexOf("watch?v=") > -1){
 						
@@ -318,7 +326,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						to:channelID,
 						message:"Przyjmuję tylko linki z youtube"
 					})
-						
+				}
 				break;
 				
 				
@@ -327,6 +335,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				var duplikat = false;
 				lnk = lnk.substr(9,lnk.length-9);
 				
+				if(msg.indexOf("kJQP7kiw5Fk") > -1){
+					bot.uploadFile({
+					to:channelID,
+					file:"obrazki/fuck you.png"
+					})
+				}
+				
+				else{
 				if(lnk.indexOf("youtube.com") > -1 || lnk.indexOf("youtu.be") > -1){	
 					if(lnk.indexOf("watch?v=") > -1){
 						
@@ -375,7 +391,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						to:channelID,
 						message:"Przyjmuję tylko linki z youtube"
 					})
-						
+				}
 				break;
 				
 				
@@ -384,6 +400,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				var duplikat = false;
 				lnk = lnk.substr(9,lnk.length-9);
 				
+				if(msg.indexOf("kJQP7kiw5Fk") > -1){
+					bot.uploadFile({
+					to:channelID,
+					file:"obrazki/fuck you.png"
+					})
+				}
+				else{
 				if(lnk.indexOf("youtube.com") > -1 || lnk.indexOf("youtu.be") > -1){	
 					if(lnk.indexOf("watch?v=") > -1){
 						
@@ -432,7 +455,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						to:channelID,
 						message:"Przyjmuję tylko linki z youtube"
 					})
-						
+				}
 				break;	
 				
 				
