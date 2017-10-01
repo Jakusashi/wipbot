@@ -52,7 +52,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	});
 	
 
-	var i = randomIntInc(0,1000)
+	var i = randomIntInc(0,10000)
 	if(i == 5)
 		bot.uploadFile({
 			to:channelID,
@@ -530,6 +530,26 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						
 				break;
 				
+				
+			case 'addtoqueue':
+				var i = 0
+				while(i<songs.length-1){
+					bot.sendMessage({
+						to:"363024128657326081",
+						message:''.concat('-play ',songs[i])
+					})
+					i++;
+				}
+					bot.sendMessage({
+						to:"363024128657326081",
+						message:"-shuffle"
+					})
+					bot.sendMessage({
+						to:"363024128657326081",
+						message:"-loopqueue"
+					})
+			
+			break;
 			case 'rank':
 				break;
 			case 'levels':
