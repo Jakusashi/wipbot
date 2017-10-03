@@ -52,7 +52,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	});
 	
 
-	var i = randomIntInc(0,10000)
+	var i = randomIntInc(0,100000)
 	if(i == 5)
 		bot.uploadFile({
 			to:channelID,
