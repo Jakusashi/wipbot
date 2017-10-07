@@ -581,7 +581,31 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			
 			break;
 			
+			case 'tuturu':
+				var voice = "363020796614148106"
+				
+				bot.joinVoiceChannel(voice, function(error, events) {
+
+				  if (error) return console.error(error);
+
+
+				  bot.getAudioContext(voice, function(error, stream) {
+
+					if (error) return console.error(error);
+
+
+					fs.createReadStream('mp3/tuturu_1.mp3').pipe(stream, {end: false});
+
+					
+					stream.on('done', function() {
+	
+					   bot.leaveVoiceChannel(voice);
+					});
+				  });
+				});
 			
+			
+			break;			
 			
 			
 			case 'rank':
