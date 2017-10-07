@@ -4,6 +4,7 @@ var auth = require('./auth.json');
 var fs = require('fs');
 var pg = require('pg');
 var nodemailer = require('nodemailer');
+var ffmpeg = require('ffmpeg');
 eval(fs.readFileSync('slam.js')+'');
 eval(fs.readFileSync('memesongs.js')+'');
 eval(fs.readFileSync('songs.js')+'');
@@ -550,6 +551,28 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					})
 			
 			break;
+			
+			case 'sotasty':
+				bot.joinVoiceChannel("363020796614148106", function(error, events){
+					if (error) return console.error(error);
+					
+					bot.getAudioContext("363020796614148106", function(error, stream){
+						if (error) return console.error(error);
+						
+						fs.createReadStream('mp3/so_tasty.mp3').pipe(stream, {end:false});
+						
+						stream.on('done');
+						
+					});
+				});
+			
+			
+			
+			break;
+			
+			
+			
+			
 			case 'rank':
 				break;
 			case 'levels':
