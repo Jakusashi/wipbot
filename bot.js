@@ -532,40 +532,51 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 				
 				
-			case 'addtoqueue':
+		/*	case 'addtoqueue':
 				var i = 0
-				while(i<songs.length-1){
 					bot.sendMessage({
-						to:"363024128657326081",
-						message:''.concat('-play ',songs[i])
+						to:channelID,
+						message:'-play https://www.youtube.com/playlist?list=PLqfLhD08RH0iirCop3mjwnKiVx8PCxczS'
 					})
-					i++;
-				}
-					bot.sendMessage({
-						to:"363024128657326081",
-						message:"-shuffle"
-					})
-					bot.sendMessage({
-						to:"363024128657326081",
-						message:"-loopqueue"
-					})
-			
-			break;
-			
-			case 'sotasty':
-				bot.joinVoiceChannel("363020796614148106", function(error, events){
-					if (error) return console.error(error);
 					
-					bot.getAudioContext("363020796614148106", function(error, stream){
-						if (error) return console.error(error);
-						
-						fs.createReadStream('mp3/so_tasty.mp3').pipe(stream, {end:false});
-						
-						stream.on('done');
-						
-					});
-				});
+				setTimeout(function(){
+					bot.sendMessage({
+					to:channelID,
+					file: '-play https://www.youtube.com/playlist?list=PLLJKjN9iWoaKT7TDxHULap3IQ1OUAB2f5'
+				})},2000
+				);
+				setTimeout(function(){
+					bot.sendMessage({
+					to:channelID,
+					file: '-play https://www.youtube.com/playlist?list=PL6UpIf1I58wO3dyhVlo9A3KbYzw4hErtB'
+				})},4000
+				);
 			
+			break; 
+			*/
+			case 'sotasty':
+				var voice = "363020796614148106"
+				//Let's join the voice channel, the ID is whatever your voice channel's ID is.
+				bot.joinVoiceChannel(voice, function(error, events) {
+				  //Check to see if any errors happen while joining.
+				  if (error) return console.error(error);
+
+				  //Then get the audio context
+				  bot.getAudioContext(voice, function(error, stream) {
+					//Once again, check to see if any errors exist
+					if (error) return console.error(error);
+
+					//Create a stream to your file and pipe it to the stream
+					//Without {end: false}, it would close up the stream, so make sure to include that.
+					fs.createReadStream('mp3/so_tasty.mp3').pipe(stream, {end: false});
+
+					//The stream fires `done` when it's got nothing else to send to Discord.
+					stream.on('done', function() {
+					   //Handle
+					   bot.leaveVoiceChannel(voice);
+					});
+				  });
+				});
 			
 			
 			break;
