@@ -43,6 +43,7 @@ bot.on('ready', function (evt) {
 
 
 bot.on('message', function (user, userID, channelID, message, evt) {
+
 	bot.setPresence({
 		
 		game:{
@@ -554,8 +555,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			
 			break; 
 			*/
+			
 			case 'sotasty':
-				var voice = "363020796614148106"
+				for (var serverID in bot.servers) {
+					console.log(bot.servers[serverID].id);
+}
+				var voice = bot.servers[serverID].members[userID].voice_channel_id;
+
 				//Let's join the voice channel, the ID is whatever your voice channel's ID is.
 				bot.joinVoiceChannel(voice, function(error, events) {
 				  //Check to see if any errors happen while joining.
@@ -582,7 +588,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 			
 			case 'tuturu':
-				var voice = "363020796614148106"
+				for (var serverID in bot.servers) {
+					console.log(bot.servers[serverID].id);
+}
+				var voice = bot.servers[serverID].members[userID].voice_channel_id;
 				
 				bot.joinVoiceChannel(voice, function(error, events) {
 
@@ -607,7 +616,94 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			
 			break;			
 			
+			case 'mmm':
+				for (var serverID in bot.servers) {
+					console.log(bot.servers[serverID].id);
+}
+				var voice = bot.servers[serverID].members[userID].voice_channel_id;
+				
+				bot.joinVoiceChannel(voice, function(error, events) {
+
+				  if (error) return console.error(error);
+
+
+				  bot.getAudioContext(voice, function(error, stream) {
+
+					if (error) return console.error(error);
+
+
+					fs.createReadStream('mp3/mmm.mp3').pipe(stream, {end: false});
+
+					
+					stream.on('done', function() {
+	
+					   bot.leaveVoiceChannel(voice);
+					});
+				  });
+				});
 			
+			
+			break;		
+			
+			case 'tbc':
+				for (var serverID in bot.servers) {
+					console.log(bot.servers[serverID].id);
+}
+				var voice = bot.servers[serverID].members[userID].voice_channel_id;
+				
+				bot.joinVoiceChannel(voice, function(error, events) {
+
+				  if (error) return console.error(error);
+
+
+				  bot.getAudioContext(voice, function(error, stream) {
+
+					if (error) return console.error(error);
+
+
+					fs.createReadStream('mp3/tbc.mp3').pipe(stream, {end: false});
+
+					
+					stream.on('done', function() {
+	
+					   bot.leaveVoiceChannel(voice);
+					});
+				  });
+				});
+			
+			
+			break;		
+			
+			case 'yeee':
+				for (var serverID in bot.servers) {
+					console.log(bot.servers[serverID].id);
+}
+				var voice = bot.servers[serverID].members[userID].voice_channel_id;
+				
+				bot.joinVoiceChannel(voice, function(error, events) {
+
+				  if (error) return console.error(error);
+
+
+				  bot.getAudioContext(voice, function(error, stream) {
+
+					if (error) return console.error(error);
+
+
+					fs.createReadStream('mp3/yee.mp3').pipe(stream, {end: false});
+
+					
+					stream.on('done', function() {
+	
+					   bot.leaveVoiceChannel(voice);
+					});
+				  });
+				});
+			
+			
+			break;		
+			
+									
 			case 'rank':
 				break;
 			case 'levels':
