@@ -133,6 +133,18 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					file:"obrazki/helping.jpg"
 				})
 				break;
+			case 'facepalm':
+				bot.uploadFile({
+					to:channelID,
+					file:"obrazki/facepalm.jpg"
+				})
+				break;			
+			case 'dolary':
+				bot.uploadFile({
+					to:channelID,
+					file:"obrazki/dolary.gif"
+				})
+				break;
 				
 			case 'hestiastep':
 				bot.sendMessage({
