@@ -140,9 +140,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				})
 				break;			
 			case 'dolary':
-				bot.uploadFile({
+				bot.sendMessage({
 					to:channelID,
-					file:"obrazki/dolary.gif"
+					message:"https://www.tenor.co/IULU.gif "
 				})
 				break;
 				
