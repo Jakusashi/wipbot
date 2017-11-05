@@ -92,12 +92,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			file:"obrazki/Guido1.png"
 			})
 		}	
-	if(userID = 159985870458322944 && message.indexOf("Świetna robota") > -1)
+	if(userID = 159985870458322944 && message.indexOf("Świetna robota") > -1){
 		bot.sendMessage({
 			to:channelID,
 			message:"gratz"
-		)}
-	
+		})
+	}
 
 		
 	
