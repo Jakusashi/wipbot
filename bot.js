@@ -79,17 +79,35 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	}
 	
 	if(message.indexOf("gwidon") > -1 && message.indexOf(":gwidon") == -1){
-		i = randomIntInc(0,1)
+		i = randomIntInc(0,4)
 		if(i == 0){
 		bot.uploadFile({
 			to:channelID,
 			file:"obrazki/Guido0.png"
 			})
 		}
-		else
+		else if(i == 1){
 		bot.uploadFile({
 			to:channelID,
 			file:"obrazki/Guido1.png"
+			})
+		}
+		else if(i == 2){
+		bot.uploadFile({
+			to:channelID,
+			file:"obrazki/Guido2.png"
+			})
+		}
+		else if(i == 3){
+		bot.uploadFile({
+			to:channelID,
+			file:"obrazki/Guido3.png"
+			})
+		}
+		else
+		bot.uploadFile({
+			to:channelID,
+			file:"obrazki/Guido4.png"
 			})
 		}	
 	if(userID == 159985870458322944 && message.indexOf("robota") > -1){
