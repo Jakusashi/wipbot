@@ -169,6 +169,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					message:"https://www.tenor.co/IULU.gif "
 				})
 				break;
+			
+			case 'wrongchannel':
+				bot.sendMessage({
+					to:channelID,
+					message:"https://www.youtube.com/watch?v=4feUSTS21-8"
+				})
+				break;
 				
 			case 'hestiastep':
 				bot.sendMessage({
